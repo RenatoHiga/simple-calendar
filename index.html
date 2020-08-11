@@ -6,42 +6,110 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Simple Calendar</title>
+
         <link rel="stylesheet" href="styles/main-style.css">
     </head>
 
     <body>
-        
-        <!-- <div class="container"> -->
-            <main class="main">
-    
-                <div class="previous_month_container">
-                    <a href="#" id="previous_month_button" class="previous_month_button">
-                        <img src="assets/images/icons/left-arrow.png" class="arrow_icon">
-                        JUL
-                    </a>
-                </div>
-                
 
-                <header class="calendar-header">
-                    <h1 class="season">WINTER</h1>
-                    <h1 id="month">August 2020</h1>
-                </header>
+        <div class="modal">
 
-                <div class="next_month_container">
-                    <a href="#" id="next_month_button" class="next_month_button">
-                        SEP
-                        <img src="assets/images/icons/right-arrow.png" class="arrow_icon">
-                    </a>
+        </div>
+
+        <main class="main">
+
+            <div class="previous_month_container">
+                <a href="#" id="previous_month_button" class="previous_month_button">
+                    <img src="assets/images/icons/left-arrow.png" class="arrow_icon">
+                    JUL
+                </a>
+            </div>
+            
+
+            <header class="calendar-header">
+                <div class="calendar-header__children-container">
+                    <span class="season">Winter</span>
+                    <div class="current_month_and_year__container">
+                        <h1 id="month" class="current_month_and_year">August 2020</h1> 
+                    </div>
                 </div>
-                
-                
-                <section id="calendar" class="calendar">
-    
-                </section>
-    
-            </main>  
-        <!-- </div> -->
-              
+            </header>
+
+            <div class="next_month_container">
+                <a href="#" id="next_month_button" class="next_month_button">
+                    SEP
+                    <img src="assets/images/icons/right-arrow.png" class="arrow_icon">
+                </a>
+            </div>
+            
+            
+            <section id="calendar" class="calendar">
+                <h2 class="sunday calendar_week_day">Sun</h2>
+                <h2 class="monday calendar_week_day">Mon</h2>
+                <h2 class="tuesday calendar_week_day">Tue</h2>
+                <h2 class="wednesday calendar_week_day">Wed</h2>
+                <h2 class="thursday calendar_week_day">Thu</h2>
+                <h2 class="friday calendar_week_day">Fri</h2>
+                <h2 class="saturday calendar_week_day">Sat</h2>
+
+                <div class="calendar_days">
+                    
+                    <div>
+                        <div>
+                            1
+                        </div>
+                    </div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+                    <div>11</div>
+                    <div>12</div>
+                    <div>13</div>
+                    <div>14</div>
+
+                    <div class="day_with_notes">15</div>
+                    <div>16</div>
+                    <div>17</div>
+                    <div>18</div>
+                    <div>19</div>
+                    <div>20</div>
+                    <div>21</div>
+
+                    <div>22</div>
+                    <div>23</div>
+                    <div>24</div>
+                    <div>25</div>
+                    <div>26</div>
+                    <div>27</div>
+                    <div>28</div>
+
+                    <div>29</div>
+                    <div>30</div>
+                    <div>31</div>
+                    <div class="other_month_day">1</div>
+                    <div class="other_month_day day_with_notes">2</div>
+                    <div class="other_month_day">3</div>
+                    <div class="other_month_day">4</div>
+
+                    <div class="other_month_day">5</div>
+                    <div class="other_month_day">6</div>
+                    <div class="other_month_day">7</div>
+                    <div class="other_month_day">8</div>
+                    <div class="other_month_day">9</div>
+                    <div class="other_month_day">10</div>
+                    <div class="other_month_day">11</div>
+
+                </div>
+            </section>
+
+        </main>  
 
 
         <script>
@@ -60,7 +128,7 @@
             let current_year = 2020;
             let list_months_days = setCalendarMonthsDays(2020);
 
-            displayCalendarDays(current_month);
+            // displayCalendarDays(current_month);
 
             // Functions
             function displayPreviousCalendarDays() {
