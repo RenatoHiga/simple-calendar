@@ -1,0 +1,38 @@
+.previous_month_container,
+.next_month_container {
+    display: flex;
+    align-items: center;
+}
+
+.next_month_container {
+    flex-direction: row-reverse;
+}
+
+.next_month_button,
+.previous_month_button {
+
+    display: flex;
+    align-items: center;
+
+    background: none;
+    font-size: 36px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.arrow_icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    
+}
+
+    .previous_month_container .arrow_icon {
+        margin-right: 15px;
+    }
+
+    .next_month_container .arrow_icon {
+        margin-left: 15px;
+    }

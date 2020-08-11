@@ -1,0 +1,49 @@
+@import url("calendar-buttons.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, 'Roboto';
+    color: rgba(255, 255, 255, 0.9);
+}
+
+html, body {
+    height: 100vh;
+}
+
+body {
+    background: #17354D;
+}
+
+main {
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: 120px auto;
+    grid-template-areas: 
+        ". . previous_month_container previous_month_container header header header header header next_month_container next_month_container . ."
+        " . . . calendar calendar calendar calendar calendar calendar calendar . . .";
+    column-gap: 30px;
+    row-gap: 30px;
+    padding: 90px 0 60px 0;
+
+}
+
+.previous_month_container {
+    grid-area: previous_month_container;
+}
+
+.next_month_container {
+    grid-area: next_month_container;
+}
+
+.calendar-header {
+    grid-area: header;
+}
+
+.calendar {
+    grid-area: calendar;
+}

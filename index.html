@@ -1,71 +1,90 @@
 <!DOCTYPE html>
 
-    <html lang="en">
+<html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Simple Calendar</title>
+        <link rel="stylesheet" href="styles/main-style.css">
     </head>
 
     <body>
         
-        <main>
-
-            <button id="previous_button">Previous</button>
-
-            <header>
-                <h2>2020</h2>
-                <h1 id="month">August, 08</h1>
-            </header>
-            <section id="calendar">
-
+        <!-- <div class="container"> -->
+            <main class="main">
+    
+                <div class="previous_month_container">
+                    <a href="#" id="previous_month_button" class="previous_month_button">
+                        <img src="assets/images/icons/left-arrow.png" class="arrow_icon">
+                        JUL
+                    </a>
+                </div>
                 
 
-            </section>
+                <header class="calendar-header">
+                    <h1 class="season">WINTER</h1>
+                    <h1 id="month">August 2020</h1>
+                </header>
 
-            <button id="next_button">Next</button>
-
-        </main>        
+                <div class="next_month_container">
+                    <a href="#" id="next_month_button" class="next_month_button">
+                        SEP
+                        <img src="assets/images/icons/right-arrow.png" class="arrow_icon">
+                    </a>
+                </div>
+                
+                
+                <section id="calendar" class="calendar">
+    
+                </section>
+    
+            </main>  
+        <!-- </div> -->
+              
 
 
         <script>
 
-            //
-            let list_months_days = setCalendarMonthsDays(2020);
-
             // DOM elements variables.
             const element_calendar = document.getElementById('calendar');
 
-            const element_next_button = document.getElementById('previous_button');
-            const element_previous_button = document.getElementById('next_button');
+            const element_next_button = document.getElementById('next_month_button');
+            const element_previous_button = document.getElementById('previous_month_button');
 
             element_next_button.addEventListener('click', displayPreviousCalendarDays);
             element_previous_button.addEventListener('click', displayNextCalendarDays);
 
-            let element_current_month = 8; // 1 to 12;
+            // Variables for the functions
+            let current_month = 8; // 1 to 12;
+            let current_year = 2020;
+            let list_months_days = setCalendarMonthsDays(2020);
 
-            displayCalendarDays(element_current_month);
+            displayCalendarDays(current_month);
 
             // Functions
             function displayPreviousCalendarDays() {
-                element_current_month = element_current_month - 1;
+                current_month = current_month - 1;
 
-                if (element_current_month <= 0) {
-                    element_current_month = 12;
+                if (current_month <= 0) {
+                    current_month = 12;
+                    current_year -= 1;
+                    list_months_days = setCalendarMonthsDays(current_year);
                 }
-                console.log(element_current_month);
-                displayCalendarDays(element_current_month);
+
+                displayCalendarDays(current_month);
             }
 
             function displayNextCalendarDays() {
-                element_current_month = element_current_month + 1;
+                current_month = current_month + 1;
                 
-                if (element_current_month >= 13) {
-                    element_current_month = 1;
+                if (current_month >= 13) {
+                    current_month = 1;
+                    current_year += 1;
+                    list_months_days = setCalendarMonthsDays(current_year);
                 }
-                console.log(element_current_month);
-                displayCalendarDays(element_current_month);
+
+                displayCalendarDays(current_month);
             }
 
             function displayCalendarDays(current_month) {
@@ -87,16 +106,10 @@
             }
 
             function setCalendarMonthsDays(year) {
-
-                // This is a shorthand of if/else.
-                // Basically it's checking if the
-                // passed year parameter is a leap year.
                 const february_days = (year % 4) === 0 ? 29 : 28;
-
                 const monthDays = [31, february_days, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
+                
                 return monthDays;
-            
             }
 
         </script>
