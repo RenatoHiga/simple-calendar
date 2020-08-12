@@ -2,6 +2,7 @@
 @import url('calendar-buttons.css');
 @import url('calendar-header.css');
 @import url('calendar.css');
+@import url('modal.css');
 
 * {
     margin: 0;

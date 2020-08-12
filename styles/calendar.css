@@ -56,6 +56,9 @@
     grid-auto-rows: 1fr;
     column-gap: 30px;
     row-gap: 30px;
+
+    align-items: center;
+    justify-items: center;
 }
 
 .calendar_days > div {
@@ -63,6 +66,8 @@
     align-items: center;
     justify-content: center;
 
+    width: 83px;
+    height: 83px;
     border-radius: 100px;
 
     font-size: 60px;
