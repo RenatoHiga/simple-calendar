@@ -10,10 +10,25 @@
     overflow-y: scroll;
 
     background-color: rgba(0, 0, 0, 0.8);
+
+    animation: 0.5s closeModal;
 }
 
 .modal.active {
     display: block;
+    opacity: 100%;
+
+    animation: 0.4s openModal;
+}
+
+@keyframes openModal {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100%;
+    }
 }
 
 .modal-main-content {
