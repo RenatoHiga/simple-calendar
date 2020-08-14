@@ -12,10 +12,10 @@
 
     <body>
 
-        <div class="modal">
+        <div class="modal" id="main_modal">
             <div class="modal-main-content">
                 
-                <div id="" class="modal-close-button">X</div>
+                <div id="modal_close_button" class="modal-close-button">X</div>
                 
                 <div class="modal-header">
                     <h1>11/08/2020</h1>
@@ -98,7 +98,7 @@
                 <div class="calendar-header__children-container">
                     <span class="season">Winter</span>
                     <div class="current_month_and_year__container">
-                        <h1 id="month" class="current_month_and_year">August 2020</h1> 
+                        <h1 id="current_month_and_year" class="current_month_and_year">August 2020</h1> 
                     </div>
                 </div>
             </header>
@@ -179,24 +179,34 @@
         <script>
 
             // DOM elements variables.
+            // Calendar
             const element_calendar_days = document.getElementById('calendar_days');
             const element_next_button = document.getElementById('next_month_button');
             const element_previous_button = document.getElementById('previous_month_button');
+            const element_current_month_and_year = document.getElementById('current_month_and_year');
 
-            element_next_button.addEventListener('click', displayPreviousCalendarDays);
-            element_previous_button.addEventListener('click', displayNextCalendarDays);
+            element_next_button.addEventListener('click', displayNextCalendarDays);
+            element_previous_button.addEventListener('click', displayPreviousCalendarDays);
+
+            // Notes
+            const element_main_modal = document.getElementById('main_modal');
+            const element_modal_close_button = document.getElementById('modal_close_button');
+
+            element_modal_close_button.addEventListener('click', closeModal);
 
             // Variables for the functions
             let current_date = new Date();
 
             let current_month = current_date.getMonth() + 1; // 1 to 12;
             let current_year = current_date.getFullYear();
-            let list_months_days = setCalendarMonthsDays(2020);
-            const list_months_name = ['January', 'February'];
+            let list_months_days = setCalendarMonthsDays(current_year);
+            const list_months_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
             displayCalendarDays(current_month);
 
             // Functions
+
+            // Calendar Functions
             function displayPreviousCalendarDays() {
                 current_month = current_month - 1;
 
@@ -207,6 +217,7 @@
                 }
 
                 displayCalendarDays(current_month);
+                displayCurrentMonthAndYear();
             }
 
             function displayNextCalendarDays() {
@@ -219,6 +230,7 @@
                 }
 
                 displayCalendarDays(current_month);
+                displayCurrentMonthAndYear();
             }
 
             function displayCalendarDays(current_month) {
@@ -237,7 +249,7 @@
                     let last_month_max_day = list_months_days[current_month - 2];
         
                     for (let day = last_month_max_day - first_week_day; day <= last_month_max_day; day++) {
-                        result += `<div class="other_month_day">${day}</div>`;
+                        result += `<div class="other_month_day" onclick="displayNoteModal()">${day}</div>`;
                         total_rendered_days++;
                     }
                     
@@ -245,18 +257,22 @@
 
                 for (let day = 1; day <= month_max_day; day++) {
 
-                    result += `<div>${day}</div>`;
+                    result += `<div onclick="displayNoteModal()">${day}</div>`;
                     total_rendered_days++;
 
                 }
 
                 for (let day = 1; total_rendered_days < 42; day++) {
-                    result += `<div class="other_month_day">${day}</div>`;
+                    result += `<div class="other_month_day" onclick="displayNoteModal()">${day}</div>`;
                     total_rendered_days++;
                 }
 
                 element_calendar_days.innerHTML = result;
                 
+            }
+
+            function displayCurrentMonthAndYear() {
+                element_current_month_and_year.innerHTML = `${list_months_name[current_month - 1]} ${current_year}`;
             }
 
             function setCalendarMonthsDays(year) {
@@ -266,6 +282,14 @@
                 return monthDays;
             }
 
+            // Notes functions
+            function displayNoteModal() {
+                element_main_modal.setAttribute('class', 'modal active');
+            }
+
+            function closeModal() {
+                element_main_modal.setAttribute('class', 'modal');
+            }
         </script>
 
     </body>
