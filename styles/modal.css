@@ -4,8 +4,10 @@
 
     display: none;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     padding: 90px 300px;
+
+    overflow-y: scroll;
 
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -90,4 +92,87 @@
     color: #4D5EFF;
     text-decoration: none;
     font-weight: bold;
+}
+
+.add-note-container {
+    display: flex;
+    flex-direction: row-reverse;
+    
+    margin-top: 50px;
+}
+
+.add-note-button,
+.tools-container > a {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 83px;
+    height: 83px;
+    border-radius: 50px;
+
+    background: #E5E5E5;
+
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 700;
+    font-size: 60px;
+    text-decoration: none;
+
+}
+
+.add-new-note {
+    background-color: #262626;
+    border-radius: 5px;
+}
+
+.write-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.write-title-container,
+.add-new-note-text-container {
+    display: block;
+}
+
+.write-title-container {
+    padding: 30px 30px 0 30px;
+}
+
+.add-new-note-text-container {
+    padding: 0 30px 30px 30px;
+}
+
+.add-new-note__write-title {
+    display: block;
+    width: 100%;
+
+    font-size: 32px;
+
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.add-new-note-text {
+    min-width: 100%;
+    max-width: 100%;
+    height: 460px;
+
+    color: white;
+    font-size: 18px;
+
+    background-color: transparent;
+    outline: none;
+    border: 5px;
+    border-color: none;
+}
+
+.tools-container {
+    display: flex;
+}
+
+.tools-container > a:first-child {
+    margin-right: 20px;
 }

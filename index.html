@@ -12,53 +12,76 @@
 
     <body>
 
-        <div class="modal active">
-                <div class="modal-main-content">
-                    
-                    <div class="modal-close-button">X</div>
-                    
-                    <div class="modal-header">
-                        <h1>11/08/2020</h1>
-                    </div>
+        <div class="modal">
+            <div class="modal-main-content">
+                
+                <div id="" class="modal-close-button">X</div>
+                
+                <div class="modal-header">
+                    <h1>11/08/2020</h1>
+                </div>
 
+                <span class="thin-divisor"></span>
+
+                <div class="notes-list">
+                    
+                    <ul>
+                        <h3 class="note-title">For the next Month Shopping</h3>
+                        <li>Buy vegetables</li>
+                        <li>Buy orange Juice</li>
+                        <li>Buy a new Phone charger</li>
+                        <a href="#" class="notes-read-more">Read More</a>
+                    </ul>
+
+                    <ul>
+                        <h3 class="note-title">Important Meeting</h3>
+                        <li>It will start at 09:00 AM;</li>
+                        <li>Before the meeting, I must prepare some questions.</li>
+                        <li>I must dress formally!</li>
+                        <a href="#" class="notes-read-more">Read More</a>
+                    </ul>
+                    
+                    <ul>
+                        <h3 class="note-title">Develop a new Project</h3>
+                        <li>I will use the Pomodoro Technique while I’m developing this new Project</li>
+                        <li>I need to remember to post it on my Github!</li>
+                        <li>Remember to the dress formally!</li>
+                        <a href="#" class="notes-read-more">Read More</a>
+                    </ul>
+                    
+                </div>
+
+
+                <div class="add-new-note hide">
+                    <div class="write-title-container">
+                        <input type="text" id="" placeholder="Write your title here" class="add-new-note__write-title">
+                    </div>
+                    
                     <span class="thin-divisor"></span>
 
-                    
-
-                    <div class="notes-list">
-                        
-                        <ul>
-                            <h3 class="note-title">For the next Month Shopping</h3>
-                            <li>Buy vegetables</li>
-                            <li>Buy orange Juice</li>
-                            <li>Buy a new Phone charger</li>
-                            <a href="#" class="notes-read-more">Read More</a>
-                        </ul>
-    
-                        <ul>
-                            <h3 class="note-title">Important Meeting</h3>
-                            <li>It will start at 09:00 AM;</li>
-                            <li>Before the meeting, I must prepare some questions.</li>
-                            <li>I must dress formally!</li>
-                            <a href="#" class="notes-read-more">Read More</a>
-                        </ul>
-                        
-                        <ul>
-                            <h3 class="note-title">Develop a new Project</h3>
-                            <li>I will use the Pomodoro Technique while I’m developing this new Project</li>
-                            <li>I need to remember to post it on my Github!</li>
-                            <li>Remember to the dress formally!</li>
-                            <a href="#" class="notes-read-more">Read More</a>
-                        </ul>
-                        
+                    <div class="add-new-note-text-container">
+                        <textarea name="" id="" class="add-new-note-text" placeholder="Write your notes here"></textarea>
                     </div>
-                    
-                    <div>
-                        +
-                    </div>
-
-                
                 </div>
+
+
+                <div class="add-note-container">
+                    <a href="#" class="add-note-button">
+                        +
+                    </a>
+                    <div class="tools-container hide">
+                        <a href="#" class="add-note-button">
+                            <img src="assets/images/icons/trashcan.svg" alt="" srcset="" width="35" height="39">
+                        </a>
+
+                        <a href="#" class="add-note-button" >
+                            <img src="assets/images/icons/checkmark.svg" width=39 height=29 alt="" srcset="">
+                        </a>
+                    </div>
+
+                </div> 
+            
+            </div>
         </div>
 
         <main class="main">
@@ -97,7 +120,7 @@
                 <h2 class="friday calendar_week_day">Fri</h2>
                 <h2 class="saturday calendar_week_day">Sat</h2>
 
-                <div class="calendar_days">
+                <div id="calendar_days" class="calendar_days">
                     
                     <div>1</div>
                     <div>2</div>
@@ -156,8 +179,7 @@
         <script>
 
             // DOM elements variables.
-            const element_calendar = document.getElementById('calendar');
-
+            const element_calendar_days = document.getElementById('calendar_days');
             const element_next_button = document.getElementById('next_month_button');
             const element_previous_button = document.getElementById('previous_month_button');
 
@@ -165,11 +187,14 @@
             element_previous_button.addEventListener('click', displayNextCalendarDays);
 
             // Variables for the functions
-            let current_month = 8; // 1 to 12;
-            let current_year = 2020;
-            let list_months_days = setCalendarMonthsDays(2020);
+            let current_date = new Date();
 
-            // displayCalendarDays(current_month);
+            let current_month = current_date.getMonth() + 1; // 1 to 12;
+            let current_year = current_date.getFullYear();
+            let list_months_days = setCalendarMonthsDays(2020);
+            const list_months_name = ['January', 'February'];
+
+            displayCalendarDays(current_month);
 
             // Functions
             function displayPreviousCalendarDays() {
@@ -200,18 +225,38 @@
 
                 let month_max_day = list_months_days[current_month - 1];
 
+                let first_week_day = new Date('2020-08-01T00:00:00');
+                first_week_day = first_week_day.getDay() - 1;
+                let last_week_day = new Date('2020-08-31T00:00:00');
+                last_week_day = last_week_day.getDay() - 1;
+
+                let total_rendered_days = 0;
+
                 let result = '';
+                if (first_week_day > 0) {
+                    let last_month_max_day = list_months_days[current_month - 2];
+        
+                    for (let day = last_month_max_day - first_week_day; day <= last_month_max_day; day++) {
+                        result += `<div class="other_month_day">${day}</div>`;
+                        total_rendered_days++;
+                    }
+                    
+                }
+
                 for (let day = 1; day <= month_max_day; day++) {
 
-                    if (day % 7 == 0) {
-                        result += ` ${day} <br>`;    
-                    } else {
-                        result += ` ${day} `;                    
-                    }
+                    result += `<div>${day}</div>`;
+                    total_rendered_days++;
 
                 }
 
-                element_calendar.innerHTML = result;
+                for (let day = 1; total_rendered_days < 42; day++) {
+                    result += `<div class="other_month_day">${day}</div>`;
+                    total_rendered_days++;
+                }
+
+                element_calendar_days.innerHTML = result;
+                
             }
 
             function setCalendarMonthsDays(year) {

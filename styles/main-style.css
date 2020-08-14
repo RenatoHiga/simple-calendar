@@ -50,3 +50,7 @@ main {
 .calendar {
     grid-area: calendar;
 }
+
+.hide {
+    display: none;
+}
