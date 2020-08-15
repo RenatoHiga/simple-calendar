@@ -79,10 +79,11 @@ function displayCalendarDays(current_month) {
 
     let result = '';
     if (first_week_day > 0) {
-        let last_month_max_day = list_months_days[current_month - 2];
+        let last_month = current_month - 2;
+        let last_month_max_day = list_months_days[last_month];
 
         for (let day = last_month_max_day - first_week_day; day <= last_month_max_day; day++) {
-            result += `<div class="other_month_day" onclick="displayNoteModal()">${day}</div>`;
+            result += `<div class="other_month_day" onclick="displayNoteModal(${day}, ${last_month})">${day}</div>`;
             total_rendered_days++;
         }
         
@@ -90,13 +91,14 @@ function displayCalendarDays(current_month) {
 
     for (let day = 1; day <= month_max_day; day++) {
 
-        result += `<div onclick="displayNoteModal()">${day}</div>`;
+        result += `<div onclick="displayNoteModal(${day}, ${current_month - 1})">${day}</div>`;
         total_rendered_days++;
 
     }
 
     for (let day = 1; total_rendered_days < 42; day++) {
-        result += `<div class="other_month_day" onclick="displayNoteModal()">${day}</div>`;
+        let next_month = current_month;
+        result += `<div class="other_month_day" onclick="displayNoteModal(${day}, ${next_month})">${day}</div>`;
         total_rendered_days++;
     }
 
@@ -116,8 +118,8 @@ function setCalendarMonthsDays(year) {
 }
 
 // Notes functions
-function displayNoteModal() {
-    element_title_current_date.innerText = `${current_day}/${current_month}/${current_year}`;
+function displayNoteModal(selected_day, selected_month) {
+    element_title_current_date.innerText = `${selected_day}/${selected_month}/${current_year}`;
     element_main_modal.setAttribute('class', 'modal active');
 }
 
